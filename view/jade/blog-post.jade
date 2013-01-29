@@ -1,0 +1,11 @@
+- if (admin)
+	button.btn.btn-primary.btn-small#edit(ng-click="editContent()") edit
+div#post-content
+- if (admin)
+	div#post-preview-content.hidden
+	div.row.buttons-row
+		span.span9
+			button.btn.btn-success.btn-small.hidden#save(ng-click="save()") save
+			button.btn.btn-danger.btn-small.hidden#revert(ng-click="revert()") revert
+			button.btn.btn-warning.btn-small.hidden#preview.pull-right(ng-click="preview()") preview
+			button.btn.btn-warning.btn-small.hidden#edit-preview.pull-right(ng-click="editContent()") edit

@@ -1,0 +1,11 @@
+{
+    "name": "site",
+    "private": false,
+    "version": "0.0.1a",
+    "dependencies": {
+    	"express": "> 0",
+    	"jade": "> 0",
+    	"ghm": "> 0",
+    	"mongoose": "> 0"
+    }
+}

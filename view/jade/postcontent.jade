@@ -1,0 +1,12 @@
+div.page-header
+	h1 
+		span#heading #{post.heading}
+		small.publish-date
+			span #{formatDate(post.created)}
+div.row
+	article.span9.markdown-content !{markdown(post.content)}
+	article.span9.markdown-textarea.hidden
+		textarea #{post.content}
+-if (post.edited)
+	div.row.edit-date
+		div.span9 (edited on #{formatDate(post.edited)})

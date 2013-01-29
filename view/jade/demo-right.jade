@@ -1,0 +1,6 @@
+input(type="hidden", id="demo-right")
+- for (var i = 0; i < posts.length; i++) {
+	div
+		a(href="#{createUri(posts[i]._id, posts[i].live.heading)}") #{posts[i].live.heading}
+			span.created &nbsp;(#{formatDate(posts[i].created)})
+- }
