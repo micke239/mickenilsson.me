@@ -102,7 +102,7 @@ var init = function(app) {
 
     app.get("/blog/right-column/", function(req, res) {
         blogPostService.getAllPublished(function(posts) {
-            res.render("demo-right", {
+            res.render("right-col", {
                 posts: posts
             });
         });

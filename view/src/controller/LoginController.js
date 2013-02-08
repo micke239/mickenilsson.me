@@ -1,7 +1,7 @@
-define(["jquery"], function($) {
+define(["app", "jquery"], function(app, $) {
 	"use strict";
 
-	var LoginController = function($scope, $routeParams, $location) {
+	var loginController = function($scope, $routeParams, $location) {
 		$scope.login = function() {
 			$.post("/login/", {username: $scope.username, password: $scope.password}).success(function(data) {
 				$location.path("/blog/").replace();
@@ -11,6 +11,6 @@ define(["jquery"], function($) {
 			});				
 		};
 	};
-
-	return LoginController;
+	
+	app.controller("loginController", loginController);
 });

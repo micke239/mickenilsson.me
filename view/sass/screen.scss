@@ -1,0 +1,76 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+$green_text: #98B64D;
+$blue_text: rgb(156, 197, 224);
+$orange_text: rgb(255, 91, 60);
+
+@import "compass/reset";
+@import "_bootstrap/_bootstrap.min";
+@import "_bootstrap/_bootstrap-responsive";
+@import "_bootstrap/_docs";
+@import "_bootstrap/_bootstrap_overrides";
+
+body {
+  background: #2f2f2f;
+  color: #c6c6c6;
+}
+
+.container {
+	margin-bottom: 20px;
+}
+
+.footer {
+	margin-top: 20px;
+}
+
+h1 small {
+	font-size: 18px;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.buttons-row {
+	margin-top: 10px;
+}
+
+#post-content {
+  #save {
+	   margin-right: 10px;
+  }
+  
+  #new {
+    margin-bottom: 20px;
+  }
+}
+
+.span9.markdown-textarea textarea {
+	width:100%;
+	height:450px;
+	box-sizing: border-box;
+}
+
+h1 small.publish-date {
+	margin-left: 10px;
+	color: $green_text;
+}
+
+div.edit-date {
+	text-align: right;
+	margin-top: 15px;
+	color: $blue_text;
+}
+
+span.created {
+	color: $green_text;
+}
+
+#right-col {
+  @media (max-width: 767px) {
+		margin-top: 30px;
+	}
+}

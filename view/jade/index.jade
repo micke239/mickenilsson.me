@@ -1,12 +1,9 @@
 doctype 5
-html(ng-app="app")
+html
 	head
 		title mickenilsson.me
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		link(rel="stylesheet", href="/css/bootstrap.min.css", type="text/css")
-		link(rel="stylesheet", href="/css/bootstrap-responsive.css", type="text/css")
-		link(rel="stylesheet", href="/css/docs.css", type="text/css")
-		link(rel="stylesheet", href="/css/style.css", type="text/css")
+		link(rel="stylesheet", href="/css/screen.css", type="text/css")
 	body
 		div.container
 			header(class="jumbotron subhead")
@@ -14,13 +11,13 @@ html(ng-app="app")
 					span.span9
 						h1 mickenilsson.me
 				div.subnav
-					ul(class="nav nav-pills")
-						li.active
-							a(href="/#!/blog/") Dev blog
+					ul.nav.nav-pills
 						li
-							a(href="/#!/demo/") Demos
+							a.blog(href="/#!/blog/") Blog
 						li
-							a(href="/#!/links/") Links
+							a.demo(href="/#!/demo/") Demo
+						li
+							a.links(href="/#!/links/") Links
 			div.row
 				div.span10
 					section(ng-view)
@@ -30,5 +27,4 @@ html(ng-app="app")
 			footer.footer
 				span &copy; Mikael Nilsson -- 2012
 		
-		script(src="/src/conf/require.js")
-		script(data-main="main.js", src="/src/lib/require.js", async="async")
+		script(data-main="/src/main.js", src="/src/lib/require.js", async="async")

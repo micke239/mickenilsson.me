@@ -1,0 +1,3 @@
+define([
+  "constant/jquery"
+ ]);
