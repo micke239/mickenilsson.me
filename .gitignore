@@ -1,3 +1,4 @@
 node_modules/
 view/css/
 view/.sass-cache/
+*.DS_Store
