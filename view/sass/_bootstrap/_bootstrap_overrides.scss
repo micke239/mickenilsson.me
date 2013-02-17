@@ -1,53 +1,181 @@
 @mixin clear-box-shadow {
-  -webkit-box-shadow: none;
-     -moz-box-shadow: none; 
-      -ms-box-shadow: none;     
-          box-shadow: none;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none; 
+        -ms-box-shadow: none;     
+            box-shadow: none;
+}
+@mixin clear-text-shadow {
+    -webkit-text-shadow: none;
+       -moz-text-shadow: none; 
+        -ms-text-shadow: none;     
+            text-shadow: none;
 }
 
 body {
-  padding-top: 0;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 13px;
+    padding-top: 0;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 13px;
+}
+
+header h1 a {
+    color: $gray_text;
+    &:hover {
+        color: $gray_text;
+        text-decoration: none;
+    }
 }
 
 a, a:hover {
-  color: $blue_text;
+    color: $blue_text;
 }
 
 .subhead h1 {
-  font-weight: 100;
-  padding: 20px 0;
-  font-size: 36px;
+    font-weight: 100;
+    padding: 20px 0;
+    font-size: 36px;
 }
 
-div.subnav {
-  background-image: none;
-  border: none;
-  background-color: inherit;
+.subnav .nav > li {
+    display: inline;
+    float:left;
+}
 
-  .nav li {
-    &.active a {
-      background-color: inherit;
-      @include clear-box-shadow;
-      color: $orange_text;
-      
-      &:hover {
-        background-color: inherit;
-        @include clear-box-shadow;
-        color: $orange_text;
-      }
+header {
+    padding-top: 10px;
+    
+    @media(max-width: 767px) {
+        text-align: center;
     }
-
-    a {
-      font-size: 15px;
-      border: none;
-      color: inherit;
-      
-      &:hover {
-        background-color: inherit;
+    
+    .brand {
+        @include clear-text-shadow;
+        color: inherit;
+        display: inline-block;
+        
+        h1 {
+            font-family: squaretypeB;
+            line-height: 20px;
+            
+            @media(max-width: 767px) {
+                max-width: 100%;
+                font-size: 30px;
+            }
+        }
+        div {
+            float: right;
+            font-family: zagRegular;
+            font-size: 15px;
+            font-weight: 100;
+            letter-spacing: 1px;
+        }
+        
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    
+    .menu-toggler {
+        @media(max-width: 767px) {
+            font-size: 15px;
+            color: inherit;
+            text-align: center;
+            display: block;
+            margin: 10px 0;    
+            
+            .stripe {
+                margin: 3px 0;
+                height: 2px;
+                margin-right: auto;
+                margin-left: auto;
+                width: 35px;
+                background-color: $gray_text;
+            }
+        }
+        @media(min-width:768px) {
+            display: none;
+        }
+    }
+    
+    .navbar {
+        background-image: none;
         border: none;
-      }
+        background-color: inherit;
+        margin-top: 10px;
+        background-color: rgba(0, 0, 0, 0.13);
+        
+        border-top: 1px ridge rgba(0, 0, 0, 0.2);
+        border-bottom: 1px ridge rgba(0, 0, 0, 0.2);
+        @media(max-width: 767px) {
+            border-left: 1px ridge rgba(0, 0, 0, 0.2);
+            border-right: 1px ridge rgba(0, 0, 0, 0.2);
+        }
+        
+        .container {
+            @media(min-width: 1200px) {
+                width: 1170px;
+            }
+            @media (min-width: 980px) and (max-width: 1199px) {
+                width: 940px;
+            }
+            @media (min-width: 768px) and (max-width: 979px) {
+                width: 724px;
+            }
+        }
+
+        .nav-container {
+            display: inline-block;
+        }
+
+        div.nav-collapse.collapse {
+            display: inline-block;
+            vertical-align: top;
+            
+            @media(max-width: 767px) {
+                display: block;
+                text-align: center;
+            }
+            
+            @media (min-width: 768px) and (max-width: 979px) {
+                overflow: visible;
+                height: auto !important; 
+            }
+        }
+
+        .nav-collapse .nav li {
+            
+            @media(min-width: 768px) and (max-width: 979px) {
+                float: left;
+                display: inline-block;
+            }
+            
+            &.active a {
+                background-color: inherit;
+                @include clear-box-shadow;
+                color: $orange_text;
+
+                &:hover {
+                    background-color: inherit;
+                    @include clear-box-shadow;
+                    color: $orange_text;
+                }
+            }
+
+            &:first-child a {
+                border-left: none;
+            }
+            a {
+                @media(min-width: 768px) {
+                    padding: 10px 52px 10px 0;
+                }
+                font-size: 15px;
+                color: inherit;
+                @include clear-text-shadow;
+
+                &:hover {
+                    background-color: inherit;
+                    color: $blue_text;
+                }
+            }
+        }
     }
-  }
 }

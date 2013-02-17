@@ -8,61 +8,49 @@
     ];
 
     require(configDeps, function() {
+        require(["bootstrap"]);
         require(["app", "angular"], function(app, angular) {
-            app.config(function($routeProvider, $locationProvider, $) {
-                $locationProvider.hashPrefix('!');
+            app.config(function($routeProvider, $locationProvider) {
+                $locationProvider.html5Mode(true);
                 $routeProvider.
 
                 //index
                 when("/", {
-                    redirectTo: "/blog/"
+                    templateUrl: "/ajax/index/",
+                    controller: "indexController"
                 }).
 
                 //blog
                 when("/blog/", {
                     controller: "blogHomeController",
-                    templateUrl: "/blog/"
+                    templateUrl: "/ajax/blog/"
                 }).
 
                 //blog post
                 when("/blog/:id/:slug/", {
                     controller: "blogPostController",
-                    templateUrl: "/blog/post/"
+                    templateUrl: "/ajax/blog/post/"
                 }).
 
                 // links
                 when("/links/", {
-                    templateUrl: "/links/",
-                    controller: function($scope) {
-                        $scope.$on("$viewContentLoaded", function() {
-                            var elements = $("ul.nav.nav-pills li");
-                            elements.removeClass("active");
-                            elements.find("a.links").parent().addClass("active");
-                        });
-                    }
+                    templateUrl: "/ajax/links/"
                 }).
 
                 //demo
                 when("/demo/", {
-                    templateUrl: "/demo/",
-                    controller: function($scope) {
-                        $scope.$on("$viewContentLoaded", function() {
-                            var elements = $("ul.nav.nav-pills li");
-                            elements.removeClass("active");
-                            elements.find("a.demo").parent().addClass("active");
-                        });
-                    }
+                    templateUrl: "/ajax/demo/"
                 }).
 
                 //login
                 when("/login/", {
                     controller: "loginController",
-                    templateUrl: "/login/"
+                    templateUrl: "/ajax/login/"
                 }).
 
                 //logout
                 when("/logout/", {
-                    templateUrl: "/logout/",
+                    templateUrl: "/ajax/logout/",
                     redirectTo: "/blog/"
                 }).
 
@@ -70,6 +58,12 @@
                 otherwise({
                     redirectTo: "/"
                 });
+            });
+            
+            app.run(function($rootScope) {
+                $rootScope.url = function(url) {
+                    return "#!" + url;
+                };
             });
             
             angular.element(document).ready(function() {

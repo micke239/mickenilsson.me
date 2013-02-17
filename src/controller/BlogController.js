@@ -2,9 +2,9 @@ var init = function(app) {
 	"use strict";
 
 	var stringUtil = require("../util/stringUtil"),
-		blogPostService = require("../service/blogPostService");
+		blogPostService = require("../service/blogPostService");    
 
-	app.get("/blog/", function(req, res) {
+	app.get("/ajax/blog/", function(req, res) {
         if (!req.session.admin) {
             blogPostService.getAllPublished(function(posts) {
                 res.render("blog", {
@@ -22,11 +22,11 @@ var init = function(app) {
         }
     });
 
-    app.get("/blog/create/", function(req, res) {
+    app.get("/ajax/blog/create/", function(req, res) {
         blogPostService.createBlogPost(function(result) {
             if (result) {
                 res.json({
-                    redirect: app.locals.createUriWithoutHashbang(result.blogPost.id, result.content.heading)
+                    redirect: app.locals.createBlogUri(result.blogPost.id, result.content.heading)
                 });
             } else {
                 res.json(false);
@@ -34,13 +34,13 @@ var init = function(app) {
         });
     });
     
-    app.get("/blog/post/", function(req, res) {
+    app.get("/ajax/blog/post/", function(req, res) {
     	res.render("blog-post", {
     		admin: req.session.admin
     	});
     });
     
-    app.get("/blog/post/:id/:slug/", function(req, res) {
+    app.get("/ajax/blog/post/:id/:slug/", function(req, res) {
         var id = req.params.id;
         blogPostService.getBlogPost(id, function(post) {	
             post = app.locals.getBlogPostContent(post, req.session.admin);
@@ -61,7 +61,7 @@ var init = function(app) {
         });
     });
 
-    app.post("/blog/publish/", function(req, res) {
+    app.post("/ajax/blog/publish/", function(req, res) {
         if (req.session.admin) {
             blogPostService.publish(req.body._id, function(result) {
                 res.json({success: result});
@@ -69,7 +69,7 @@ var init = function(app) {
         }
     });
 
-    app.post("/blog/unpublish/", function(req, res) {
+    app.post("/ajax/blog/unpublish/", function(req, res) {
         if (req.session.admin) {
             blogPostService.unpublish(req.body._id, function(result) {
                 res.json({success: result});
@@ -77,7 +77,7 @@ var init = function(app) {
         }
     });
 
-    app.post("/blog/save/", function(req, res) {
+    app.post("/ajax/blog/save/", function(req, res) {
         if (req.session.admin) {
             blogPostService.save(req.body, function(result) {
                 if (result) {
@@ -92,7 +92,7 @@ var init = function(app) {
         }
     });
 
-    app.post("/blog/convert-markdown/", function(req, res) {
+    app.post("/ajax/blog/convert-markdown/", function(req, res) {
         if (req.body.markdown) {
             res.send(stringUtil.markdown(req.body.markdown));
         } else {
@@ -100,7 +100,7 @@ var init = function(app) {
         }
     });
 
-    app.get("/blog/right-column/", function(req, res) {
+    app.get("/ajax/blog/right-column/", function(req, res) {
         blogPostService.getAllPublished(function(posts) {
             res.render("right-col", {
                 posts: posts

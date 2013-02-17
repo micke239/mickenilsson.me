@@ -3,7 +3,7 @@ define(["app", "jquery"], function(app, $) {
 
     var blogPostController = function($scope, $routeParams, $location) {
         var getPostContent = function() {
-            $.get("/blog/post/" + $routeParams.id + "/" + $routeParams.slug + "/").
+            $.get("/ajax/blog/post/" + $routeParams.id + "/" + $routeParams.slug + "/").
                 success(function(data) {
                     if (data.changeSlug !== undefined) {
                         $location.path("/blog/" + $routeParams.id + "/" + data.changeSlug + "/").replace();
@@ -20,12 +20,6 @@ define(["app", "jquery"], function(app, $) {
 
         $scope.$on('$viewContentLoaded', function() {
             getPostContent();
-
-            if ($("#demo-right").length === 0) {
-                $.get("/blog/right-column/", function(data) {
-                    $("#right-col").html(data);
-                });
-            }
         });
 
         $scope.editContent = function() {
@@ -49,7 +43,7 @@ define(["app", "jquery"], function(app, $) {
             newContent.content = $("#post-content .markdown-textarea textarea").val();
             newContent._id = $routeParams.id;
 
-            $.post("/blog/save/", newContent).success(function(data) {
+            $.post("/ajax/blog/save/", newContent).success(function(data) {
                 if (data.success) {
                     $scope.$apply(function() {
                         $location.path("/blog/" + data.id + "/reload/").replace();
@@ -74,7 +68,7 @@ define(["app", "jquery"], function(app, $) {
                 markdown: $("#post-content .markdown-textarea textarea").val()
             };
 
-            $.post("/blog/convert-markdown/", params).success(function(data) {
+            $.post("/ajax/blog/convert-markdown/", params).success(function(data) {
                 var content = $("#post-content .markdown-content");
                 content.html(data);
 

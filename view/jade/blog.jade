@@ -11,7 +11,7 @@
 		- if(post) {
 			- id = posts[i]._id;
 			div.span3
-				a(href="#{createUri(id, post.heading)}") #{post.heading}
+				a(href="#{createBlogUri(id, post.heading)}") #{post.heading}
 				div created: 
 					span.created #{formatDate(post.created)}
 				- if (admin && post.preview) {
@@ -29,7 +29,7 @@
 		- if(post) {
 			- id = posts[i+1]._id;
 			div.span3
-				a(href="#{createUri(id, post.heading)}") #{post.heading}
+				a(href="#{createBlogUri(id, post.heading)}") #{post.heading}
 				div created: 
 					span.created #{formatDate(post.created)}
 				- if (admin && post.preview) {
@@ -47,7 +47,7 @@
 		- if(post) {
 			- id = posts[i+2]._id;
 			div.span3
-				a(href="#{createUri(id, post.heading)}") #{post.heading}
+				a(href="#{createBlogUri(id, post.heading)}") #{post.heading}
 				div created: 
 					span.created #{formatDate(post.created)}
 				- if (admin && post.preview) {

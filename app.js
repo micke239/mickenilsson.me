@@ -20,14 +20,17 @@ app.configure(function() {
     app.use(app.router);
 });
 
-app.get("/", function(req, res) {
-    res.render("index");
-});
+var renderMain = function(req, res) {
+    res.render("main");
+};
+
+app.get(/^(?!\/ajax\/).*/, renderMain);
 
 require("./src/controller/BlogController")(app);
 require("./src/controller/DemoController")(app);
 require("./src/controller/LinkController")(app);
 require("./src/controller/LocalsController")(app);
 require("./src/controller/LoginController")(app);
+require("./src/controller/IndexController")(app);
 
 app.listen(4711);

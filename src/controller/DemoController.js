@@ -1,7 +1,7 @@
 var init = function(app) {
 	"use strict";
 	
-    app.get("/demo/", function(req, res) {
+    app.get("/ajax/demo/", function(req, res) {
     	res.render("demo");
     });
 };

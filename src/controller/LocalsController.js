@@ -20,14 +20,10 @@ var init = function(app) {
         return stringUtil.markdown(md);
     };
 
-    app.locals.createUri = function(id, heading) {
-        return "/#!" + app.locals.createUriWithoutHashbang(id, heading);
-    };
-
-    app.locals.createUriWithoutHashbang = function(id, heading) {
+    app.locals.createBlogUri = function(id, heading) {
         return "/blog/" + id + "/" + stringUtil.sluggify(heading) + "/";
     };
-
+    
     app.locals.getBlogPostContent = function(post, admin) {
         if (post) {
 			if (!admin && post.live) {

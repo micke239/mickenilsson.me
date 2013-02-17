@@ -1,0 +1,45 @@
+doctype 5
+html
+    head
+        title mickenilsson.me
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/screen.css", type="text/css")
+    body
+        div#wrap
+            header
+                div.container
+                    a.brand(href="/") 
+                        h1 mickenilsson.me
+                        div Life. Design. Development.
+                div.navbar
+                    div.container
+                        a.menu-toggler(data-toggle="collapse", data-target=".nav-collapse")
+                            div.stripe
+                            div.stripe
+                            div.stripe
+                        div.nav-collapse.collapse
+                            ul.nav(ng-controller="navigationController")
+                                li(ng-class="{active: isActive('home')}")  
+                                    a(href="/") Home
+                                li(ng-class="{active: isActive('blog')}") 
+                                    a(href="/blog/") Blog
+                                li(ng-class="{active: isActive('demo')}")
+                                    a(href="/demo/") Demo
+                                li(ng-class="{active: isActive('links')}")
+                                    a(href="/links/") Links
+            div.container.content-container
+                div.row
+                    section.span10(ng-view)
+                    div#right-col.span2(ng-include="'/ajax/blog/right-column/'")	
+        footer#footer
+            div.container
+                div.row
+                    span.span12 
+                        span.name Mikael Nilsson
+                        a.first(href="http://www.facebook.com/micke239") Facebook
+                        span &mdash;
+                        a(href="http://www.linkedin.com/pub/mikael-nilsson/31/631/635") LinkedIn
+                        span &mdash;
+                        a(href="https://github.com/micke239") GitHub
+                
+        script(data-main="/src/main.js", src="/src/lib/require.js", async="async")
