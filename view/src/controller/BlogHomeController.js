@@ -29,6 +29,16 @@ define(["app", "jquery"], function(app, $) {
                 }
             });
         };
+
+        $scope.remove = function(id) {
+            $.post("/ajax/blog/remove/", {
+                _id: id
+            }, function(data) {
+                if (data && data.success) {
+                    $("#post-" + id).remove();
+                }
+            });
+        };
     };
 
     app.controller("blogHomeController", blogHomeController);

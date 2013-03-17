@@ -76,6 +76,14 @@ var init = function(app) {
             });
         }
     });
+    
+    app.post("/ajax/blog/remove/", function(req, res) {
+        if (req.session.admin) {
+            blogPostService.remove(req.body._id, function(result) {
+                res.json({success: result});
+            });
+        }
+    });
 
     app.post("/ajax/blog/save/", function(req, res) {
         if (req.session.admin) {

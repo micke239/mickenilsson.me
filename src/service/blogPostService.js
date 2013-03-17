@@ -55,7 +55,7 @@ var BlogPostService = function() {
         });
     };
 
-    this.unpublish = function(id, callback) {
+    this.publish = function(id, callback) {
         self.getBlogPost(id, function(blogPost) {
             if (blogPost) {
                 var postUpdated = function(err, numberAffected) {
@@ -66,13 +66,20 @@ var BlogPostService = function() {
 
                     callback(numberAffected === 1);
                 };
-                  
-                if (!blogPost.preview) {
-                    BlogPost.update({_id: blogPost._id}, { live: null, preview: blogPost.live }, postUpdated);      
-                } else {
-                    BlogPost.update({_id: blogPost._id}, { live: null }, postUpdated);                   
-                }
+
+                BlogPost.update({_id: blogPost._id}, { preview: null, live: blogPost.preview }, postUpdated);
             }
+        });
+    };
+
+    this.remove = function(id, callback) {
+        BlogPost.remove({_id: id}, function(err, numberAffected) {
+            if (err) {
+                console.error("Error when publish BlogPost with id " + blogPost._id + ": " + err);
+                callback(false);
+            }
+
+            callback(numberAffected === 1);
         });
     };
 

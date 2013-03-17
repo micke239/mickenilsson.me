@@ -1,63 +1,29 @@
 - if (admin) {
-	div.row
-		div.span9
-			button.btn.btn-success.btn-small.new(ng-click="newPost()") new
+    div.row
+        div.span9
+            button.btn.btn-success.btn-small.new(ng-click="newPost()") new
 - }
 
-- var post;
-- for (var i = 0; i < posts.length; i+=3) {
-	div.row
-		- post = getBlogPostContent(posts[i], admin);
-		- if(post) {
-			- id = posts[i]._id;
-			div.span3
-				a(href="#{createBlogUri(id, post.heading)}") #{post.heading}
-				div created: 
-					span.created #{formatDate(post.created)}
-				- if (admin && post.preview) {
-					div 
-						button.btn.btn-success.btn-small.publish(ng-click="publish('#{id}')", id="publish-#{id}") publish
-						button.btn.btn-danger.btn-small.unpublish.hidden(ng-click="unpublish('#{id}')", id="unpublish-#{id}") unpublish
-				- } else if (admin) {
-					div 
-						button.btn.btn-success.btn-small.hidden(ng-click="publish('#{id}')", id="publish-#{id}") publish
-						button.btn.btn-danger.btn-small.unpublish(ng-click="unpublish('#{id}')", id="unpublish-#{id}") unpublish
-				- }
-		- }
+- var post, id;
+div.row
+    - for (var i = 0; i < posts.length; i++) {
+    - post = getBlogPostContent(posts[i], admin);
+    - id = posts[i]._id;
+        div.span3(id="post-#{id}")
+            a(href="#{createBlogUri(id, post.heading)}") #{post.heading}
+            div created: 
+                span.created #{formatDate(post.created)}
+                - if (admin && post.preview) {
+                    div 
+                        button.btn.btn-success.btn-small.publish(ng-click="publish('#{id}')", id="publish-#{id}") publish
+                        button.btn.btn-warning.btn-small.unpublish.hidden(ng-click="unpublish('#{id}')", id="unpublish-#{id}") unpublish
+                        button.btn.btn-danger.btn-small.remove(ng-click="remove('#{id}')", id="remove-#{id}") remove
+                - } else if (admin) {
+                    div 
+                        button.btn.btn-success.btn-small.hidden(ng-click="publish('#{id}')", id="publish-#{id}") publish
+                        button.btn.btn-warning.btn-small.unpublish(ng-click="unpublish('#{id}')", id="unpublish-#{id}") unpublish
+                        button.btn.btn-danger.btn-small.remove(ng-click="remove('#{id}')", id="remove-#{id}") remove
+                - }
+    - }
 
-		- post = getBlogPostContent(posts[i+1], admin);
-		- if(post) {
-			- id = posts[i+1]._id;
-			div.span3
-				a(href="#{createBlogUri(id, post.heading)}") #{post.heading}
-				div created: 
-					span.created #{formatDate(post.created)}
-				- if (admin && post.preview) {
-					div 
-						button.btn.btn-success.btn-small.publish(ng-click="publish('#{id}')", id="publish-#{id}") publish
-						button.btn.btn-danger.btn-small.unpublish.hidden(ng-click="unpublish('#{id}')", id="unpublish-#{id}") unpublish
-				- } else if (admin) {
-					div 
-						button.btn.btn-success.btn-small.hidden(ng-click="publish('#{id}')", id="publish-#{id}") publish
-						button.btn.btn-danger.btn-small.unpublish(ng-click="unpublish('#{id}')", id="unpublish-#{id}") unpublish
-				- }
-		- }
 
-		- post = getBlogPostContent(posts[i+2], admin);
-		- if(post) {
-			- id = posts[i+2]._id;
-			div.span3
-				a(href="#{createBlogUri(id, post.heading)}") #{post.heading}
-				div created: 
-					span.created #{formatDate(post.created)}
-				- if (admin && post.preview) {
-					div 
-						button.btn.btn-success.btn-small.publish(ng-click="publish('#{id}')", id="publish-#{id}") publish
-						button.btn.btn-danger.btn-small.unpublish.hidden(ng-click="unpublish('#{id}')", id="unpublish-#{id}") unpublish
-				- } else if (admin) {
-					div 
-						button.btn.btn-success.btn-small.hidden(ng-click="publish('#{id}')", id="publish-#{id}") publish
-						button.btn.btn-danger.btn-small.unpublish(ng-click="unpublish('#{id}')", id="unpublish-#{id}") unpublish
-				- }
-		- }		
-- }
